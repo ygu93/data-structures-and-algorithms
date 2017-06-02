@@ -11,5 +11,54 @@ function contiguous_sub_sum(arr){
       currentSum = 0;
     }
   }
-  return max; 
+  return max;
+}
+
+// word chains, given a start word and an end word, find the chain of words when changing one letter of the word at a time that will get you to the end word and return the length of the chain. return 0 if it cannot be done and all the words in the chain including the end word must be part of the word list
+var ladderLength = function(beginWord, endWord, wordList) {
+    var visited = {};
+    var backTrack = {};
+    var queue = [beginWord];
+    var answer = 0;
+    wordList = new Set(wordList)
+    while(queue.length > 0){
+        var currentWord = queue.shift();
+        visited[currentWord] = true;
+        nextWords = changeOneLetter(currentWord);
+        for(var i=0;i<nextWords.length;i++){
+            if(nextWords[i] === endWord && wordList.has(nextWords[i])){
+                answer = 2
+                var current = currentWord
+                while(current!== beginWord){
+                    current = backTrack[current];
+                    answer +=1
+
+                }
+                return answer
+            }
+
+            if(wordList.has(nextWords[i]) && !visited[nextWords[i]]){
+                queue.push(nextWords[i]);
+                backTrack[nextWords[i]] = currentWord;
+                visited[nextWords[i]] = true;
+            }
+        }
+    }
+    return answer;
+
+};
+
+function changeOneLetter(word){
+    words = [];
+    var alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
+    for(var i=0;i<word.length;i++){
+        for(var j=0;j<alphabet.length;j++){
+            if(word[i] !== alphabet[j]){
+                var charArray = word.split('')
+                charArray[i] = alphabet[j];
+                words.push(charArray.join(''));
+            }
+        }
+    }
+    return words
 }
