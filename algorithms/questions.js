@@ -62,3 +62,29 @@ function changeOneLetter(word){
     }
     return words
 }
+
+// compare the triplets
+function triplets(a0, a1, a2, b0, b1, b2){
+    // Complete this function
+    pointsA = 0;
+    pointsB = 0;
+    if(a0 > b0){
+        pointsA++;
+    }else if(a0 < b0){
+        pointsB++;
+    }
+
+    if(a1 > b1){
+        pointsA++;
+    }else if(a1 < b1){
+        pointsB++;
+    }
+
+    if(a2 > b2){
+        pointsA++;
+    }else if(a2 < b2){
+        pointsB++;
+    }
+
+    console.log(`${pointsA} ${pointsB}`)
+}
