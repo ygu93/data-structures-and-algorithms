@@ -88,3 +88,33 @@ function triplets(a0, a1, a2, b0, b1, b2){
 
     console.log(`${pointsA} ${pointsB}`)
 }
+
+// diagonal difference
+function diagDiff() {
+    // n is number of rows
+    var n = parseInt(readLine());
+    // a is matrix
+    var a = [];
+    for(a_i = 0; a_i < n; a_i++){
+       a[a_i] = readLine().split(' ');
+       a[a_i] = a[a_i].map(Number);
+    }
+    var firstDiag = 0;
+    var secondDiag = 0;
+    var pointer1 = 0;
+    var pointer2 = n-1;
+    for(var i=0;i<n;i++){
+        for(var j=0;j<n;j++){
+            if(j === pointer1){
+                firstDiag+= a[i][j];
+            }
+            if(j === pointer2){
+                secondDiag+= a[i][j];
+            }
+        }
+        pointer1++;
+        pointer2--;
+    }
+    console.log(Math.abs(firstDiag - secondDiag));
+
+}
