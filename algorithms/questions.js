@@ -155,3 +155,20 @@ function staircase() {
         symbols+="#"
     }
 }
+// hackerrank birthdayCakeCandles
+function birthdayCakeCandles(n, ar) {
+    // Complete this function
+    var currentMax = 0;
+    var count = {};
+    for(var i = 0;i<n;i++){
+        if(count[ar[i]]){
+            count[ar[i]] += 1;
+        }else{
+            count[ar[i]] = 1;
+            if(ar[i] > currentMax){
+                currentMax = ar[i];
+            }
+        }
+    }
+    return count[currentMax]
+}
