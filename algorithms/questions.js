@@ -172,3 +172,20 @@ function birthdayCakeCandles(n, ar) {
     }
     return count[currentMax]
 }
+
+// hacker rank time conversion
+function timeConversion(s) {
+    // Complete this function
+    var units = s.split(":");
+    var hours = units[0];
+    var minutes = units[1];
+    var seconds = units[2].slice(0,2);
+    var period = units[2].slice(2);
+    if(period === "PM" && parseInt(hours) < 12){
+        hours = (parseInt(hours) + 12).toString();
+    }else if(period === "AM" && hours === "12"){
+        hours = "00"
+    }
+
+    return `${hours}:${minutes}:${seconds}`;
+}
