@@ -118,3 +118,40 @@ function diagDiff() {
     console.log(Math.abs(firstDiag - secondDiag));
 
 }
+// hacker rank plus minus
+function plusMinus() {
+    var n = parseInt(readLine());
+    arr = readLine().split(' ');
+    arr = arr.map(Number);
+    var positive = 0;
+    var negative = 0;
+    var zeros = 0;
+    for(var i=0;i<n;i++){
+        if(arr[i] > 0){
+            positive++;
+        }else if(arr[i] < 0){
+            negative++;
+        }else{
+            zeros++;
+        }
+    }
+    console.log(positive/n);
+    console.log(negative/n);
+    console.log(zeros/n);
+
+}
+
+// hackerrank staircase
+function staircase() {
+    var n = parseInt(readLine());
+    var spaces = ""
+    var symbols = "#"
+    for(var j =0; j<n-1;j++){
+        spaces += " "
+    }
+    for(var i = 0;i < n;i++){
+        console.log(spaces+symbols);
+        spaces = spaces.slice(1)
+        symbols+="#"
+    }
+}
