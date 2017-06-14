@@ -189,3 +189,69 @@ function timeConversion(s) {
 
     return `${hours}:${minutes}:${seconds}`;
 }
+
+// hacker rank in a string
+function isHackerrank(s){
+    var find = 'hackerrank';
+    var i = 0;
+    for(var j=0;j<s.length;j++){
+        if(s[j] === find[i]){
+            i++;
+            if(i === 10){
+                console.log('YES');
+                return
+            }
+        }
+    }
+    if(i < 10){
+        console.log('NO')
+    }
+}
+
+// hacker rank mars exploration
+function marsExploration() {
+    var S = readLine();
+    var find = 'SOS';
+    var i = 0;
+    var count = 0;
+    for(var j=0;j<S.length;j++){
+       if(S[j] !== find[i]){
+           count++;
+       }
+       i++;
+       if(i > 2){
+           i = 0;
+       }
+    }
+    console.log(count);
+
+}
+
+// caesar cipher
+function caesarCipher() {
+    // length of string
+    var n = parseInt(readLine());
+    // the string
+    var s = readLine();
+    // the offset
+    var k = parseInt(readLine());
+    var newStr = "";
+    k = k % 26;
+    for(var i = 0;i<n;i++){
+        var currentCharCode = s.charCodeAt(i);
+        var newCharCode;
+        if((currentCharCode >= 65 && currentCharCode <=90) || (currentCharCode >=97 && currentCharCode <=122)){
+           newCharCode = currentCharCode + k;
+            if(currentCharCode > 96 && newCharCode > 122){
+                newCharCode -= 26;
+            }else if(currentCharCode < 91 && newCharCode > 90){
+                newCharCode -=26;
+            }
+        }else{
+            newCharCode = currentCharCode;
+        }
+        newStr += String.fromCharCode(newCharCode);
+    }
+    console.log(newStr);
+
+}
