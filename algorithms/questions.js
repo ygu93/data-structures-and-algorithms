@@ -255,3 +255,55 @@ function caesarCipher() {
     console.log(newStr);
 
 }
+//
+// hacker rank sherlock and the valid string
+
+function isValid(s){
+    // Complete this function
+    var freq = {};
+    for(var i=0;i<s.length;i++){
+        if(freq[s[i]]){
+            freq[s[i]]++;
+        }else{
+            freq[s[i]] = 1;
+        }
+    }
+
+    var keys = Object.keys(freq);
+    var freqCount = {}
+
+    keys.forEach(key => {
+        if(freqCount[freq[key]]){
+            freqCount[freq[key]]++;
+        }else{
+            freqCount[freq[key]] = 1;
+        }
+    })
+
+    var keys2 = Object.keys(freqCount);
+    if(keys2.length > 2){
+        return 'NO';
+    }else if(keys2.length === 1){
+        return 'YES';
+    }
+    var primaryFreq;
+    var secondaryFreq;
+
+    keys2.forEach(key => {
+      if(freqCount[key] > 1 && primaryFreq === undefined){
+          primaryFreq = key;
+      }else if(freqCount[key] > 1){
+          return 'NO';
+      }else if(freqCount[key] === 1 && secondaryFreq === undefined){
+          secondaryFreq = key;
+      }else if(freqCount[key] === 1){
+          return 'NO';
+      }
+    })
+
+    if((primaryFreq - secondaryFreq === -1) || (primaryFreq - secondaryFreq) === (primaryFreq - 1)){
+        return 'YES'
+    }else{
+        return 'NO';
+    }
+}
