@@ -246,3 +246,17 @@ function makingAnagrams(s1, s2){
     return deletions;
 
 }
+
+// hacker rank string construction
+function stringConstruction(s){
+    // Complete this function
+    var price = 0
+    var letters = new Set();
+    for(var i =0;i<s.length;i++){
+        if(!letters.has(s[i])){
+            price++;
+            letters.add(s[i]);
+        }
+    }
+    return price;
+}
