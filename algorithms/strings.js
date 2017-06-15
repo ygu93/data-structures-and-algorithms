@@ -191,3 +191,58 @@ function twoStrings(s1, s2){
     }
     return 'NO';
 }
+
+// hacker rank game of thrones
+function gameOfThrones(s){
+    // Complete this function
+    var letters = {};
+    var odd = false;
+    for(var i = 0;i<s.length;i++){
+        if(letters[s[i]]){
+            letters[s[i]]++;
+        }else{
+            letters[s[i]] = 1;
+        }
+    }
+
+    var keys = Object.keys(letters);
+    for(var j = 0;j<keys.length;j++){
+        if(letters[keys[j]] % 2 > 0 && odd){
+            return 'NO';
+        }else if(letters[keys[j]] % 2 > 0){
+            odd = true;
+        }
+    }
+    return 'YES';
+}
+
+// hackerrank making anagrams
+function makingAnagrams(s1, s2){
+    // Complete this function
+    var deletions = 0;
+    var s1Chars = {};
+    for(var i=0;i<s1.length;i++){
+        if(s1Chars[s1[i]]){
+            s1Chars[s1[i]]++;
+        }else{
+            s1Chars[s1[i]] = 1;
+        }
+    }
+
+    for(var j=0;j<s2.length;j++){
+        if(s1Chars[s2[j]]){
+            s1Chars[s2[j]]--;
+        }else{
+            deletions++;
+        }
+    }
+
+    var keys = Object.keys(s1Chars);
+
+    for(var k =0;k < keys.length;k++){
+        deletions+= s1Chars[keys[k]];
+    }
+
+    return deletions;
+
+}
