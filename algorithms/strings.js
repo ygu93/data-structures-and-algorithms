@@ -97,3 +97,97 @@ function gemstones(arr){
     }
     return count;
 }
+
+// hacker rank alternating characters
+function alternatingCharacters(s){
+    // Complete this function
+    deletions = 0;
+    for(var i = 1;i<s.length;i++){
+        if(s[i] === s[i-1]){
+            deletions++;
+        }
+    }
+    return deletions;
+}
+
+// hacker rank beautiful binary string
+function minSteps(n, B){
+    // Complete this function
+    var notPretty = '010'
+    var steps = 0;
+    var j = 0;
+    for(var i =0;i<n;i++){
+        if(B[i] === notPretty[j] && j ==2){
+            steps++;
+            j = 0;
+        }else if(B[i] === notPretty[j]){
+            j++;
+        }else{
+           if(B[i] === '0'){
+               j = 1;
+           }else{
+               j = 0;
+           }
+        }
+    }
+    return steps;
+}
+
+// hacker rank love letter mystery
+function theLoveLetterMystery(s){
+    // Complete this function
+    var reductions = 0;
+    var j = s.length - 1;
+    for(var i =0;i<j;i++){
+        if(s[i] !== s[j]){
+            reductions += Math.abs(s.charCodeAt(i) - s.charCodeAt(j));
+        }
+        j--;
+    }
+    return reductions
+}
+
+// hacker rank anagrams
+function anagram(s){
+    // Complete this function
+    var changes = 0;
+    var letters = {};
+    if(s.length % 2 > 0){
+        return -1;
+    }
+    for(var i = 0; i<s.length;i++){
+        if(i < s.length/2){
+            if(letters[s[i]]){
+                letters[s[i]]++;
+            }else{
+                letters[s[i]] = 1;
+            }
+        }else{
+            if(letters[s[i]]){
+                letters[s[i]]--;
+            }
+        }
+    }
+
+    Object.keys(letters).forEach(letter => {
+        changes+= letters[letter];
+    })
+    return changes
+
+
+}
+
+// hacker rank two strings
+function twoStrings(s1, s2){
+    // Complete this function
+    var letters = new Set();
+    for(var i =0;i<s1.length;i++){
+        letters.add(s1[i])
+    }
+    for(var j =0;j<s2.length;j++){
+        if(letters.has(s2[j])){
+            return "YES";
+        }
+    }
+    return 'NO';
+}
