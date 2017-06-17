@@ -46,3 +46,25 @@ function insertionSortPartOne(input) {
     arr[0] = unsorted;
     console.log(arr.join(' '))
 }
+
+// hacker rank quicksort part 1
+function quickSortPartOne(input) {
+    //Enter your code here
+    input = input.split('\n');
+    var n = input[0];
+    var arr = input[1].split(' ').map(num => parseInt(num));
+    var left = [];
+    var right = [];
+    var pivot = arr[0];
+    for(var i=1;i<n;i++){
+        if(arr[i] <= pivot){
+            left.push(arr[i]);
+        }else{
+            right.push(arr[i]);
+        }
+    }
+
+    left = left.join(' ');
+    right = right.join(' ');
+    console.log(`${left} ${pivot} ${right}`)
+}
