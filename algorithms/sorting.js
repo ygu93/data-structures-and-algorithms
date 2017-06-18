@@ -82,7 +82,7 @@ function quickSort(array, start = 0, end = array.length, comparator){
     return array;
   }
 
-  pivot = partition(array, start, end, comparator);
+  var pivot = partition(array, start, end, comparator);
   quickSort(array, start, pivot, comparator);
   quickSort(array, pivot+1, end, comparator);
   return array
@@ -99,9 +99,7 @@ function partition(array, start, length, comparator){
   var pivot = array[start];
   var barrier = start;
   while(i< length){
-    if(comparator(pivot, array[i]) > 0 && barrier + 1 === i ){
-      barrier++;
-    }else if(comparator(pivot, array[i]) > 0 && barrier + 1 !== i){
+    if(comparator(pivot, array[i]) > 0 && barrier + 1 !== i){
       var temp = array[i];
       array[i] = array[barrier+1];
       array[barrier+1] = temp;
@@ -112,6 +110,53 @@ function partition(array, start, length, comparator){
 
   var temp2 = array[start];
   array[start] = array[barrier];
+  array[barrier] = temp2;
+  return barrier
+}
+
+
+// hackerrank quicksort with last element used as pivot
+function quickSort2(array, start = 0, end = array.length, comparator){
+  if(!comparator){
+    comparator = function(a, b){
+      return a-b;
+    }
+  }
+
+  if(end - start < 2){
+    return array;
+  }
+
+  var pivot = partition2(array, start, end, comparator);
+  quickSort2(array, start, pivot, comparator);
+  quickSort2(array, pivot+1, end, comparator);
+  return array
+}
+
+function partition2(array, start, end, comparator){
+
+
+  if(!comparator){
+    comparator = function(a, b){
+      return a-b;
+    }
+  }
+
+  var i = start;
+  var pivot = array[end-1];
+  var barrier = start;
+  while(i < end){
+    if(comparator(pivot, array[i]) > 0){
+      var temp = array[i];
+      array[i] = array[barrier];
+      array[barrier] = temp;
+      barrier++;
+    }
+    i++;
+  }
+
+  var temp2 = array[end - 1];
+  array[end - 1] = array[barrier];
   array[barrier] = temp2;
   return barrier
 }
