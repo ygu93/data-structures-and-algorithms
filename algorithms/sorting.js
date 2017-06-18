@@ -68,3 +68,50 @@ function quickSortPartOne(input) {
     right = right.join(' ');
     console.log(`${left} ${pivot} ${right}`)
 }
+
+
+// inplace quicksort using a partition
+function quickSort(array, start = 0, end = array.length, comparator){
+  if(!comparator){
+    comparator = function(a, b){
+      return a-b;
+    }
+  }
+
+  if(end - start < 2){
+    return array;
+  }
+
+  pivot = partition(array, start, end, comparator);
+  quickSort(array, start, pivot, comparator);
+  quickSort(array, pivot+1, end, comparator);
+  return array
+}
+
+function partition(array, start, length, comparator){
+  if(!comparator){
+    comparator = function(a, b){
+      return a-b;
+    }
+  }
+
+  var i = start + 1;
+  var pivot = array[start];
+  var barrier = start;
+  while(i< length){
+    if(comparator(pivot, array[i]) > 0 && barrier + 1 === i ){
+      barrier++;
+    }else if(comparator(pivot, array[i]) > 0 && barrier + 1 !== i){
+      var temp = array[i];
+      array[i] = array[barrier+1];
+      array[barrier+1] = temp;
+      barrier++;
+    }
+    i++;
+  }
+
+  var temp2 = array[start];
+  array[start] = array[barrier];
+  array[barrier] = temp2;
+  return barrier
+}
