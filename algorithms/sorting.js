@@ -70,7 +70,7 @@ function quickSortPartOne(input) {
 }
 
 
-// inplace quicksort using a partition
+// inplace quicksort using a partition with first element pivot
 function quickSort(array, start = 0, end = array.length, comparator){
   if(!comparator){
     comparator = function(a, b){
@@ -99,7 +99,7 @@ function partition(array, start, length, comparator){
   var pivot = array[start];
   var barrier = start;
   while(i< length){
-    if(comparator(pivot, array[i]) > 0 && barrier + 1 !== i){
+    if(comparator(pivot, array[i]) > 0){
       var temp = array[i];
       array[i] = array[barrier+1];
       array[barrier+1] = temp;
@@ -159,4 +159,26 @@ function partition2(array, start, end, comparator){
   array[end - 1] = array[barrier];
   array[barrier] = temp2;
   return barrier
+}
+
+// hacker rank counting sort1
+function countingSort(n, arr){
+   var results = [];
+   for(var i = 0;i<100;i++){
+       results.push(0);
+   }
+
+    for(var j = 0;j<n;j++){
+       results[arr[j]]++;
+   }
+
+   var sorted = [];
+   for(var k = 0;k<n;k++){
+       if(results[k] > 0){
+         for(var l = 0;l<results[k];l++){
+             sorted.push(k);
+         }
+       }
+   }
+   return sorted
 }
