@@ -49,3 +49,59 @@ function Queue(){
         }
     }
 }
+
+
+// hacker rank Trie contacts, fails testcase 5 (due to memory consumption?)
+function Trie(){
+    this.store = {};
+}
+
+Trie.prototype.add = function(name){
+        var current = this.store;
+        for(var i=0;i<name.length;i++){
+            if(current[name[i]]){
+                current[name[i]]['wordCount']+=1;
+                current = current[name[i]];
+            }else{
+                current[name[i]] = {'wordCount': 1};
+                current = current[name[i]];
+             }
+        }
+    }
+
+Trie.prototype.find = function(name){
+        var current = this.store;
+        for(var i =0;i<name.length;i++){
+            if(current[name[i]]){
+                current = current[name[i]];
+            }else{
+                return 0;
+            }
+        }
+
+        return current.wordCount;
+    }
+
+
+
+// hacker rank davis' staircase
+var cache = {};
+function stairCase(n){
+    if(n === 1){
+        return 1;
+    }else if(cache[n]){
+        return cache[n];
+    }
+    var steps = [1,2,3];
+    var count = 0;
+    for(var i = 0;i<steps.length;i++){
+        var remainder = n - steps[i]
+        if(remainder > 0){
+            count+= stairCase(remainder);
+        }else if(remainder === 0){
+            count+=1;
+        }
+    }
+    cache[n] = count;
+    return count;
+}
