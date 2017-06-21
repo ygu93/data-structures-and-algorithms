@@ -82,3 +82,53 @@ function deleteNode(head, position) {
         return head;
     }
 }
+
+// reverse linked list
+function reverseLinkedList(head) {
+    var prev = null;
+    while(head){
+        var next = head.next;
+        head.next = prev;
+        prev = head;
+        head = next;
+    }
+    return prev;
+}
+
+// compare linked list
+function compareLinkedLists( headA, headB) {
+    while(headA && headB){
+        if(headA.data !== headB.data){
+            return 0;
+        }
+        headA = headA.next;
+        headB = headB.next;
+    }
+
+    if(headA !== headB){
+        return 0
+    }else{
+        return 1;
+    }
+}
+
+// get node value
+function getNodeValue( head, position) {
+    var fast = head;
+    var slow = head;
+    var i = 0;
+    while(i<position){
+        fast = fast.next;
+        i++;
+    }
+
+    while(fast){
+        if(fast.next === null){
+            break;
+        }
+        fast = fast.next;
+        slow = slow.next;
+    }
+
+    return slow.data
+}
