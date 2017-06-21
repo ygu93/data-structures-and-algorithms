@@ -132,3 +132,59 @@ function getNodeValue( head, position) {
 
     return slow.data
 }
+
+// remove duplicates
+function removeDuplicates(head) {
+    var current = head;
+    while(current){
+        if(current.next && current.next.data === current.data){
+            current.next = current.next.next;
+        }else{
+            current = current.next;
+        }
+    }
+    return head;
+}
+
+// has cycle
+function hasCycle(head) {
+   var slow = head;
+   var fast = head;
+
+   while(fast){
+       if(fast.next){
+        fast = fast.next.next;
+       }else{
+           return false;
+       }
+
+       if(fast === slow){
+           return true;
+       }
+       slow = slow.next;
+   }
+   return false;
+
+}
+
+// find merge node
+function findMergeNode(headA, headB) {
+    var currentA = headA;
+    var currentB = headB;
+
+    while(currentA !== currentB){
+        if(currentA.next === null){
+            currentA = headB;
+        }else{
+            currentA = currentA.next;
+        }
+
+        if(currentB.next === null){
+            currentB = headA;
+        }else{
+            currentB = currentB.next;
+        }
+    }
+
+    return currentA.data;
+}
