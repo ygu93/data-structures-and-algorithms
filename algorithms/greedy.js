@@ -43,3 +43,24 @@ function luckBalance(input) {
     console.log(luck);
 
 }
+
+// hacker rank mark and toys
+function markToys(input) {
+    //Enter your code here
+    input = input.split('\n');
+    var toys = input[1].split(' ').map(num => parseInt(num));
+    var k = parseInt(input[0].split(' ')[1]);
+    toys = toys.sort((a,b) => a-b);
+    var numToys = 0;
+    for(var i = 0;i<toys.length;i++){
+        if(k - toys[i] < 0){
+            console.log(numToys);
+            return;
+        }
+        k-= toys[i];
+        numToys++;
+
+    }
+    console.log(numToys);
+
+}
