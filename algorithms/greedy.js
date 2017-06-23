@@ -64,3 +64,20 @@ function markToys(input) {
     console.log(numToys);
 
 }
+
+// min abs difference
+function minAbsDiff() {
+    var n = parseInt(readLine());
+    a = readLine().split(' ');
+    a = a.map(Number);
+    // your code goes here
+    a = a.sort((a,b) => a-b);
+    var min = Infinity;
+    for(var i =0;i<n -1;i++){
+        var diff = Math.abs(a[i+1]-a[i]);
+        if(diff < min){
+            min = diff;
+        }
+    }
+    console.log(min);
+}
