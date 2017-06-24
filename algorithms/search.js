@@ -23,3 +23,27 @@ function missingNum(input) {
     console.log(Object.keys(chars).filter(char => chars[char] > 0).join(' '));
 
 }
+
+function pairs(input) {
+    //Enter your code here
+    input = input.split('\n');
+    input[0] = input[0].split(' ');
+    var n = parseInt(input[0][0]);
+    var k = parseInt(input[0][1]);
+    var arr = input[1].split(' ').map(num => parseInt(num));
+    var hash = {};
+    var count = 0;
+    for(var i =0;i<n;i++){
+        if(hash[arr[i]+k]){
+           count++;
+        }
+
+        if(hash[arr[i]-k]){
+           count++;
+        }
+        hash[arr[i]] = true;
+    }
+    console.log(count);
+
+
+}
