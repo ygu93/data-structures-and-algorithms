@@ -182,3 +182,41 @@ function countingSort(n, arr){
    }
    return sorted
 }
+
+
+// hacker rank find the median using quick select partition
+function findMedian(arr, start =0, end=arr.length){
+    if(start === end){
+        return arr[start]
+    }
+    var pivot = qsPartition(arr, start, end);
+    var medianIdx = Math.floor(arr.length/2)
+    if(pivot === medianIdx){
+       return arr[pivot];
+    }else if(pivot > medianIdx){
+        return findMedian(arr, start, pivot);
+    }else if(pivot < medianIdx){
+        return findMedian(arr, pivot+1, end)
+    }
+
+
+
+}
+
+function qsPartition(arr, start, end){
+    let pivotIdx = start
+    let pivot = arr[start]
+    for(var i=start+1;i<end;i++){
+        if(arr[i] <= pivot){
+            var temp = arr[pivotIdx+1];
+            arr[pivotIdx+1] = arr[i];
+            arr[i] = temp;
+            pivotIdx++;
+        }
+    }
+
+    var temp2 = arr[pivotIdx];
+    arr[pivotIdx] = pivot;
+    arr[start] = temp2;
+    return pivotIdx;
+}
