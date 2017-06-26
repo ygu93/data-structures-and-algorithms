@@ -47,3 +47,25 @@ function pairs(input) {
 
 
 }
+
+
+// hacker rank sherlock and array
+function sherlockArray(a){
+    // Complete this function
+    var leftSums = [0];
+    for(var i=0;i<a.length-1;i++){
+        leftSums.push(a[i] + leftSums[i])
+    }
+
+    var k = leftSums.length-1;
+    var rightSum = 0;
+    for(var j=a.length-1;j > -1;j--){
+        if(rightSum === leftSums[k]){
+            return "YES";
+        }
+        k--;
+        rightSum+= a[j];
+    }
+
+    return "NO"
+}
