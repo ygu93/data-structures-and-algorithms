@@ -220,3 +220,24 @@ function qsPartition(arr, start, end){
     arr[start] = temp2;
     return pivotIdx;
 }
+
+
+
+// given an array of objects A an an array of indexes B reorder array A with the given indexes in array B
+function reOrder(arr, order){
+  var i = 0;
+  while(i<arr.length){
+    if(order[i] !== i){
+      var el = arr[i];
+      var pos = order[i];
+      arr[i] = arr[pos];
+      arr[pos] = el;
+      order[i] = order[pos];
+      order[pos] = pos;
+    }else{
+      i++;
+    }
+  }
+
+  return arr;
+}
