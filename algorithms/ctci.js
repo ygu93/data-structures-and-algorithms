@@ -105,3 +105,28 @@ function stairCase(n){
     cache[n] = count;
     return count;
 }
+
+
+// ctci question 1.7
+function setZeros(arr){
+  var rows = {};
+  var columns = {};
+  for(var i=0;i<arr.length;i++ ){
+    for(var j=0;j<arr[i].length;j++){
+      if(arr[i][j] === 0){
+        rows[i] = true;
+        columns[j] = true;
+      }
+    }
+  }
+
+  for(var i2=0;i2<arr.length;i2++ ){
+    for(var j2=0;j2<arr[i2].length;j2++){
+      if(rows[i2] || columns[j2]){
+        arr[i2][j2] = 0;
+      }
+    }
+  }
+
+  return arr;
+}
