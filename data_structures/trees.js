@@ -28,3 +28,32 @@ var levelOrderBottom = function(root) {
 
    return result
 };
+
+// leetcode largestValues in a BST row
+var largestValues = function(root) {
+    if(!root){
+        return [];
+    }
+    var largest = [];
+    var queue = [root];
+    while(queue.length > 0){
+        var row = queue;
+        queue = [];
+        var max = -Infinity;
+        row.forEach(node => {
+            if(node.left){
+                queue.push(node.left);
+            }
+
+            if(node.right){
+                queue.push(node.right);
+            }
+            if(node.val > max){
+                max = node.val;
+            }
+        })
+        largest.push(max)
+    }
+
+    return largest
+};
