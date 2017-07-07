@@ -260,3 +260,37 @@ function stringConstruction(s){
     }
     return price;
 }
+
+
+// strStr leetcode
+var strStr = function(haystack, needle) {
+    var n = needle.length;
+    if(n === 0){
+        return 0
+    }
+
+    var currentIndex = 0;
+    var j = 0
+    var i = 0;
+    while(i<haystack.length){
+        if(haystack[i] === needle[j] && j === 0){
+            currentIndex = i
+            j++;
+            i++;
+        }else if(haystack[i] === needle[j]){
+            j++;
+            i++;
+        }else if(haystack[i] !== needle[j] && j > 0){
+            i= currentIndex + 1;
+            j = 0;
+        }else{
+            i++;
+        }
+
+        if(j === n){
+            return currentIndex
+        }
+    }
+
+    return -1;
+};
